@@ -37,3 +37,9 @@ app/static/uploads/
 Thumbs.db
 .vscode/
 .idea/
+# ----------------------
+#  PEM FILES
+# ----------------------
+
+*.pem
+keys/
