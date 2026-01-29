@@ -1,0 +1,39 @@
+# ----------------------
+# Virtual environments
+# ----------------------
+venv/
+env/
+.venv/
+
+# ----------------------
+# Environment variables
+# ----------------------
+.env
+
+# ----------------------
+# Python cache (anywhere)
+# ----------------------
+__pycache__/
+*.pyc
+*.pyo
+
+# ----------------------
+# Uploaded media (inside app)
+# ----------------------
+app/media/
+app/uploads/
+app/static/uploads/
+
+# ----------------------
+# Logs & temp files
+# ----------------------
+*.log
+*.zip
+
+# ----------------------
+# OS / Editor
+# ----------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
