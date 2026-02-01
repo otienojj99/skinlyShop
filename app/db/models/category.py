@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, TIMESTAMP
+from sqlalchemy import Column, ForeignKey, Integer, String, Text, TIMESTAMP
 from sqlalchemy.sql import func
 from app.db.base import Base
 
@@ -6,6 +6,9 @@ class Category(Base):
     __tablename__ = "categories"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False, unique=True)
+    slug = Column(String(255), unique=True, index=True, nullable=False)
+
+    shop_id = Column(Integer, ForeignKey("shops.id"), nullable=False)
     description = Column(Text, nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
     updated_at = Column(TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())

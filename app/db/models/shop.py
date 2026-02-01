@@ -8,6 +8,8 @@ class Shop (Base):
     
     id = Column(Integer, primary_key=True, index=True)
     owner_id = Column(Integer, ForeignKey("users.id"), nullable=False) # Links to user model
+    name = Column(String(150), nullable=False)
+    slug = Column(String(180), nullable=False, unique=True, index=True)
     description = Column(Text, nullable=True)
     contact_email = Column(String(150), nullable=True)
     contact_phone = Column(String(50), nullable=True)

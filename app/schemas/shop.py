@@ -27,6 +27,7 @@ class ShopUpdate(BaseModel):
 class ShopRead(ShopBase):
     id:int
     owner_id:int
+    slug: str
     created_at: datetime
     updated_at: datetime
     
