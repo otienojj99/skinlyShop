@@ -10,7 +10,7 @@ from app.services.category_service import CategoryService
 crouter = APIRouter(prefix="/shops/{shop_id}/categories", tags=["categories"])
 
 @crouter.post("/", response_model=CategoryRead, dependencies=[Depends(require_shop_owner)])
-async def create_category(shop_id: int, category_in: CategoryCreate, db: AsyncSession):
+async def create_category(shop_id: int, category_in: CategoryCreate, db: AsyncSession = Depends(get_db)):
     service = CategoryService(db)
     return await service.create(
         shop_id=shop_id,

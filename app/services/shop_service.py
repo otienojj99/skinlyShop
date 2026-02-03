@@ -2,6 +2,7 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.models.shop import Shop
+from typing import List
 from app.helpers.slug_helper import SlugHelper
 
 
@@ -38,18 +39,18 @@ class ShopServices:
         return self.db.commit()
     
     # List all shops
-    async def list(self)-> list[Shop]:
-        result = await self.db.execute("SELECT * FROM shops ORDER BY created_at DESC")
+    async def list(self)-> List[Shop]:
+        result = await self.db.execute(select(Shop).order_by(Shop.created_at.desc()))
         return result.scalars().all()
     
-    async def get_by_owner(self, owner_id: int)-> list[Shop]:
+    async def get_by_owner(self, owner_id: int)-> List[Shop]:
         result = await self.db.execute(
             select(Shop).where(Shop.owner_id == owner_id)
         )
         return result.scalars().all()
     
     
-    async def search_by_name(self, query:str)-> list[Shop]:
+    async def search_by_name(self, query:str)-> List[Shop]:
         result = await self.db.execute(
             select(Shop).where(Shop.name.ilike(f"%{query}%"))
         )

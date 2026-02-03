@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.db.models.category import Category
+from typing import List
 from app.helpers.slug_helper import SlugHelper
 
 
@@ -42,7 +43,7 @@ class CategoryService:
         return result.scalar_one_or_none()
     
     # List categories for a shop
-    async def list_by_shop(self, shop_id: int) -> list[Category]:
+    async def list_by_shop(self, shop_id: int) -> List[Category]:
         result = await self.db.execute(
             select(Category).where(Category.shop_id == shop_id).order_by(Category.created_at.desc())
         )
